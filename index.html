@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output do Código</title>
+    <style>
+        body {
+            font-family: "Segoe Print", sans-serif;
+            font-size: 26px;
+        }
+        .bold-black {
+            font-weight: bold;
+            color: black;
+        }
+        .blue {
+            color: blue;
+        }
+        .green {
+            color: green;
+        }
+        #executeButton {
+            background-color: pink;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>"É perigoso ir sozinho Felipãaao, por isso eu trouxe o time inteiro salgando um pouco a proposta do desafio
+    em vez de definir o xp aos heróis parados fiz algo similar em trazer aqui a nossa PT de valorant !
+    usei ajuda do chatgpt e web3schools para o html.Espero que goste e muito obrigado por me mostrar o mundo da programção , estou amando e espero uma hora que aperte sua mão pessoalmente
+    pois a primeira impressão é a que mais conta né!"
+    <button id="executeButton" onclick="executeCode()">Match found</button>
+    <pre id="output"></pre>
+    <script>
+        // Função que executa o código e exibe o output
+        function executeCode() {
+            var time = "Time do vava formado";
+            var outputText = "<span class='bold-black'>Time do vava formado</span>\n";
+
+            // Agentes
+            var herois = ["Reyna", "DeadLock", "Viper", "Omen", "Breach"];
+
+            // Caixinha pra guardar os que já saíram do case
+            var agentesResgatados = [];
+
+            // rng js 1k até 10001
+            function gerarXp() {
+                return Math.floor(Math.random() * (10001 - 1000 + 1)) + 1000;
+            }
+
+            for (var i = 0; i < 5; i++) {
+                // repete pra encontrar quem não saiu do case ainda
+                var agentesDisponiveis = herois.filter(function (agente) {
+                    return !agentesResgatados.includes(agente);
+                });
+
+                if (agentesDisponiveis.length === 0) {
+                    outputText += "Pt tá full meu nobre faz o complete\n";
+                    break;
+                }
+
+                // Pega um dos agentes no switch case
+                var agenteAleatorio = Math.floor(Math.random() * agentesDisponiveis.length);
+                var agenteEscolhido = agentesDisponiveis[agenteAleatorio];
+                agentesResgatados.push(agenteEscolhido);
+
+                //resultado do xp
+                var xp = gerarXp();
+                outputText += "<span class='blue'>Lock " + (i + 1) + ": " + agenteEscolhido + "</span>\n";
+                outputText += "<span class='green'>XP do agente: " + xp + "</span>\n";
+
+                if (xp === 1000) {
+                    outputText += "Elo do nilba: <span class='black'>Ferro</span>\n";
+                } else if (xp >= 1001 && xp <= 2000) {
+                    outputText += "Elo do nilba: <span class='black'>Bronze</span>\n";
+                } else if (xp >= 2001 && xp <= 5000) {
+                    outputText += "Elo do nilba: <span class='black'>Prata</span>\n";
+                } else if (xp >= 5001 && xp <= 7000) {
+                    outputText += "Elo do nilba: <span class='black'>Ouro</span>\n";
+                } else if (xp >= 7001 && xp <= 8000) {
+                    outputText += "Elo do nilba: <span class='black'>Platina</span>\n";
+                } else if (xp >= 8001 && xp <= 9000) {
+                    outputText += "Elo do esforçado: <span class='black'>Famoso Acidente</span>\n";
+                } else if (xp >= 9001 && xp <= 10000) {
+                    outputText += "Elo do MONSTRO: <span class='black'>Imortalzola</span>\n";
+                } else if (xp === 10001) {
+                    outputText += "Elo do Monstro: <span class='black'>Radiante</span>\n";
+                }
+            }
+
+            // Exibe o output no elemento <pre>
+            document.getElementById("output").innerHTML = outputText;
+        }
+    </script>
+</body>
+</html>
